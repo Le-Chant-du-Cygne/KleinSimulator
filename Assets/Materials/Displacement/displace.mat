@@ -91,7 +91,7 @@ Material:
         name: _StartDMap2
       second:
         m_Texture: {fileID: 2800000, guid: 56b58a65b2a43ed4185cc14c4220d944, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _StartNMap
@@ -141,10 +141,10 @@ Material:
       second: 12.2
     - first:
         name: _FlowScale1U
-      second: -0.72
+      second: -0.66
     - first:
         name: _FlowScale1V
-      second: -0.11
+      second: -0.27
     - first:
         name: _FlowScale2U
       second: 0.4
@@ -153,7 +153,7 @@ Material:
       second: 0.35
     - first:
         name: _FlowSpeed
-      second: 0.05
+      second: 0.08
     - first:
         name: _GlossMapScale
       second: 1
@@ -165,7 +165,7 @@ Material:
       second: 1
     - first:
         name: _MaxSpec
-      second: 0.5
+      second: 0.75
     - first:
         name: _Metallic
       second: 0
@@ -183,7 +183,7 @@ Material:
       second: 0.02
     - first:
         name: _Phase
-      second: 0.1
+      second: 0.2
     - first:
         name: _Phong
       second: 0.5
@@ -201,10 +201,10 @@ Material:
       second: 1.47
     - first:
         name: _StartDisp2
-      second: 0.86
+      second: 1.37
     - first:
         name: _TargetDisp
-      second: 1.64
+      second: 2
     - first:
         name: _UVSec
       second: 0
@@ -220,4 +220,4 @@ Material:
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _SpecularColor
-      second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+      second: {r: 1, g: 0, b: 0, a: 0.5}
