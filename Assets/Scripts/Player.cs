@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
 
                 if (buffer == null)
                 {
-                    if (colorSlider.value >= colorSlider.maxValue / 2f)
+                    if (colorSlider.value >= colorSlider.maxValue / 2f && colorSlider.value >= colorSlider.maxValue / 2f + 0.5f)
                     {
                         buffer = Instantiate(bufferPrefab, new Vector3(kleinMesh.bounds.max.x - (kleinMesh.bounds.max.x / 4f), kleinMesh.bounds.min.z + (kleinMesh.bounds.max.z / 4f), -1f), Quaternion.identity);
                         bufferMesh = buffer.GetComponent<MeshFilter>().mesh;
@@ -118,6 +118,10 @@ public class Player : MonoBehaviour
         if (playerRomain.getTimerWithMoving() > 0)
         {
             text.text = texts[(int)(playerRomain.getTimerWithMoving() / 10f)];
+            if (buffer != null)
+            {
+                text.color = bufferMaterial.color;
+            }
         }
         else
         {
