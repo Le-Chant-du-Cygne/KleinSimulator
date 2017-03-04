@@ -10,6 +10,13 @@ public class Player : MonoBehaviour
     private Material canvasMat;
     private Slider colorSlider;
     private Toggle maxValueToggle;
+    public Toggle MaxValueToggle
+    {
+        get
+        {
+            return maxValueToggle;
+        }
+    }
 
     private float saturation;
 

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerRomain : MonoBehaviour {
+public class PlayerRomain : MonoBehaviour
+{
 
     private Slider colorSlider;
 
@@ -11,23 +12,45 @@ public class PlayerRomain : MonoBehaviour {
     private float timeWithoutMoving;
     private float blueKlein;
 
+    /* Gael override #01 */
+    float timerWithMoving = 0f;
+    bool maxValueToggleHasBeenOn = false;
+    Player player;
+    private Toggle maxValueToggle;
+    Text sliderMoveDurationDisplay;
+    /**/
 
-    void Start () {
+    void Start()
+    {
 
         colorSlider = GameObject.Find("ColorSlider").GetComponent<Slider>();
         timeWithoutMoving = 5;
         blueKlein = 0.65f;
+
+        /*G#01*/
+        player = GetComponent<Player>();
+        maxValueToggle = player.MaxValueToggle;
+        sliderMoveDurationDisplay = GameObject.Find("SliderMoveDurationDisplay").GetComponent<Text>();
+        sliderMoveDurationDisplay.text = "";
+        Vector3 pos = sliderMoveDurationDisplay.rectTransform.position;
+        sliderMoveDurationDisplay.rectTransform.position = new Vector3(Screen.width - (Screen.width * 0.25f), pos.y, pos.z);
     }
 
 
-    void Update () {
+    void Update()
+    {
+        /*G#01*/
+        if(!maxValueToggleHasBeenOn && maxValueToggle.gameObject.activeSelf && maxValueToggle.isOn)
+        {
+            maxValueToggleHasBeenOn = true;
+        }
 
-        timer += Time.deltaTime;
+        if(maxValueToggleHasBeenOn)
+            timer += Time.deltaTime;
 
         if (timer >= timeWithoutMoving)
         {
-
-            if (colorSlider.value < blueKlein -0.01f)
+            if (colorSlider.value < blueKlein - 0.01f)
             {
                 colorSlider.value += 0.01f;
             }
@@ -42,6 +65,27 @@ public class PlayerRomain : MonoBehaviour {
 
         }
 
+        /*G#01*/
+        if (maxValueToggle.gameObject.activeSelf && !maxValueToggle.isOn)
+        {
+           // Debug.Log("yo");
+
+            if (colorSlider.value != 1f || colorSlider.value != blueKlein)
+            {
+                timerWithMoving += Time.deltaTime;
+                sliderMoveDurationDisplay.text = timerWithMoving + " sec";
+            }
+            else
+            {
+                timerWithMoving = 0f;
+                sliderMoveDurationDisplay.text = "";
+            }
+        }
+        else
+        {
+            timerWithMoving = 0f;
+            sliderMoveDurationDisplay.text = "";
+        }
     }
 
 }
