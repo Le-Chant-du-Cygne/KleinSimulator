@@ -18,6 +18,7 @@ public class PlayerRomain : MonoBehaviour
     Player player;
     private Toggle maxValueToggle;
     Text sliderMoveDurationDisplay;
+    bool hasReachedTimeWithoutMoving = false;
     /**/
 
     void Start()
@@ -32,8 +33,8 @@ public class PlayerRomain : MonoBehaviour
         maxValueToggle = player.MaxValueToggle;
         sliderMoveDurationDisplay = GameObject.Find("SliderMoveDurationDisplay").GetComponent<Text>();
         sliderMoveDurationDisplay.text = "";
-        Vector3 pos = sliderMoveDurationDisplay.rectTransform.position;
-        sliderMoveDurationDisplay.rectTransform.position = new Vector3(Screen.width - (Screen.width * 0.25f), pos.y, pos.z);
+        //Vector3 pos = sliderMoveDurationDisplay.rectTransform.position;
+        //sliderMoveDurationDisplay.rectTransform.position = new Vector3(Screen.width - (Screen.width * 0.25f), pos.y, pos.z);
     }
 
 
@@ -63,14 +64,19 @@ public class PlayerRomain : MonoBehaviour
                 timer = 0;
             }
 
+            if(colorSlider.value == colorSlider.maxValue || colorSlider.value == blueKlein)
+            {
+                hasReachedTimeWithoutMoving = true;
+            }
+
         }
 
         /*G#01*/
-        if (maxValueToggle.gameObject.activeSelf && !maxValueToggle.isOn)
+        if (maxValueToggle.gameObject.activeSelf && !maxValueToggle.isOn && hasReachedTimeWithoutMoving)
         {
            // Debug.Log("yo");
 
-            if (colorSlider.value != 1f || colorSlider.value != blueKlein)
+            if (colorSlider.value != colorSlider.maxValue && colorSlider.value != blueKlein)
             {
                 timerWithMoving += Time.deltaTime;
                 sliderMoveDurationDisplay.text = timerWithMoving + " sec";
