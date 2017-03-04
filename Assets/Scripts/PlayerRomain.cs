@@ -33,8 +33,6 @@ public class PlayerRomain : MonoBehaviour
         maxValueToggle = player.MaxValueToggle;
         sliderMoveDurationDisplay = GameObject.Find("SliderMoveDurationDisplay").GetComponent<Text>();
         sliderMoveDurationDisplay.text = "";
-        //Vector3 pos = sliderMoveDurationDisplay.rectTransform.position;
-        //sliderMoveDurationDisplay.rectTransform.position = new Vector3(Screen.width - (Screen.width * 0.25f), pos.y, pos.z);
     }
 
 
