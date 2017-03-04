@@ -359,6 +359,7 @@ GameObject:
   - component: {fileID: 294274605}
   - component: {fileID: 294274606}
   - component: {fileID: 294274607}
+  - component: {fileID: 294274608}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -403,6 +404,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4e0cfe1e1775c4baba0fb3ca3e3584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &294274608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 294274604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8db9eb33924a37f46a905f1976342e27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterDispMaterial: {fileID: 2100000, guid: c6aac68f41ef8c04b9efec8e96023435, type: 2}
+  condition: 0
+  lightXAngle: 150
+  maxLightIntensity: 1
+  lightFadeInDuration: 5
 --- !u!1 &323287347
 GameObject:
   m_ObjectHideFlags: 0

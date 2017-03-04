@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: displace
+  m_Name: Waterizer
   m_Shader: {fileID: 4800000, guid: 374c9a562b6e19e4b96fd3827914b316, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
