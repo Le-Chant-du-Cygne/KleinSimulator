@@ -5,29 +5,48 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    private Transform klein;
+    private Mesh kleinMesh;
     private Material canvasMat;
     private Slider colorSlider;
     private Toggle maxValueToggle;
 
+    private float saturation;
+
 
     void Start ()
     {
-        canvasMat = GameObject.Find("Klein").GetComponent<MeshRenderer>().material;
+        klein = GameObject.Find("Klein").transform;
+        kleinMesh = GameObject.Find("Klein").GetComponent<MeshFilter>().mesh;
+        canvasMat = klein.GetComponent<MeshRenderer>().material;
         colorSlider = GameObject.Find("ColorSlider").GetComponent<Slider>();
         maxValueToggle = GameObject.Find("MaxValueToggle").GetComponent<Toggle>();
 
         // Init
         maxValueToggle.gameObject.SetActive(false);
+        saturation = 1f;
     }
 	
 	void Update ()
     {
-		
+        Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (mouseWorldPosition.x > kleinMesh.bounds.max.x / 4f && mouseWorldPosition.x < kleinMesh.bounds.max.x &&
+            mouseWorldPosition.y > kleinMesh.bounds.max.z / 2f && mouseWorldPosition.y < kleinMesh.bounds.max.z)
+        {
+            if (maxValueToggle.isOn)
+            {
+                saturation = 1f;
+            }
+            else
+            {
+                saturation = 0.5f;
+            }
+        }
 	}
 
     public void setColor ()
     {
-        HSVColor hsvColor = new HSVColor(colorSlider.value, 1f, 1f);
+        HSVColor hsvColor = new HSVColor(colorSlider.value, saturation, 1f);
         canvasMat.color = hsvColor.ToColor();
 
         if (Mathf.Approximately(colorSlider.value, 0.5f))
