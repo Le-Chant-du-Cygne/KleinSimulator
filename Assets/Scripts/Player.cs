@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 
     private ColoredWordDisplay coloredWordDisplay;
 
-    void Start ()
+    void Start()
     {
         playerRomain = GetComponent<PlayerRomain>();
 
@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
         sliderMoveDurationDisplay = GameObject.Find("SliderMoveDurationDisplay").GetComponent<Text>();
         text = GameObject.Find("Text").GetComponent<Text>();
 
+        /*GOverride #037*/
         coloredWordDisplay = GetComponent<ColoredWordDisplay>();
 
         // Init
@@ -82,25 +83,28 @@ public class Player : MonoBehaviour
         }
         Resources.UnloadAsset(xmlCorpus);
     }
-	
-	void Update ()
+
+    void Update()
     {
         Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (mouseWorldPosition.x > kleinMesh.bounds.max.x / 4f && mouseWorldPosition.x < kleinMesh.bounds.max.x &&
+        if (mouseWorldPosition.x > kleinMesh.bounds.max.x / 2f && mouseWorldPosition.x < kleinMesh.bounds.max.x &&
             mouseWorldPosition.y > kleinMesh.bounds.max.z / 2f && mouseWorldPosition.y < kleinMesh.bounds.max.z)
         {
             if (maxValueToggle.isOn)
             {
                 saturation = 1f;
 
-                if (buffer == null)
+                if (!coloredWordDisplay.condition)
                 {
-                    if (colorSlider.value >= colorSlider.maxValue / 2f && colorSlider.value >= colorSlider.maxValue / 2f + 0.5f)
+                    if (colorSlider.value >= colorSlider.maxValue * 0.5f && colorSlider.value <= colorSlider.maxValue * 0.5f + 0.5f)
                     {
-                        buffer = Instantiate(bufferPrefab, new Vector3(kleinMesh.bounds.max.x - (kleinMesh.bounds.max.x / 4f), kleinMesh.bounds.min.z + (kleinMesh.bounds.max.z / 4f), -1f), Quaternion.identity);
-                        bufferMesh = buffer.GetComponent<MeshFilter>().mesh;
-                        bufferMaterial = buffer.GetComponent<MeshRenderer>().material;
-                        bufferMaterial.color = new Color(1f, 1f, 0f);
+                        /*GOverride #037*/
+                        coloredWordDisplay.condition = true;
+                        //
+                        //                buffer = Instantiate(bufferPrefab, new Vector3(kleinMesh.bounds.max.x - (kleinMesh.bounds.max.x / 4f), kleinMesh.bounds.min.z + (kleinMesh.bounds.max.z / 4f), -1f), Quaternion.identity);
+                        //bufferMesh = buffer.GetComponent<MeshFilter>().mesh;
+                        //bufferMaterial = buffer.GetComponent<MeshRenderer>().material;
+                        //bufferMaterial.color = new Color(1f, 1f, 0f);
                     }
                 }
             }
@@ -110,20 +114,19 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButton(0))
-        {
-            if (buffer != null)
-            {
-                if (mouseWorldPosition.x > buffer.position.x - (bufferMesh.bounds.extents.x)
-                    && mouseWorldPosition.x < buffer.position.x + (bufferMesh.bounds.extents.x)
-                    && mouseWorldPosition.y > buffer.position.y - (bufferMesh.bounds.extents.y)
-                    && mouseWorldPosition.y < buffer.position.y + (bufferMesh.bounds.extents.y))
-                {
-                    bufferMaterial.color = kleinMaterial.color;
-                    coloredWordDisplay.condition = true;
-                }
-            }
-        }
+        //if (Input.GetMouseButton(0))
+        //{
+        //    if (coloredWordDisplay.condition)
+        //    {
+        //        //if (mouseWorldPosition.x > coloredWordDisplay.title.position.x - (bufferMesh.bounds.extents.x)
+        //        //    && mouseWorldPosition.x < buffer.position.x + (bufferMesh.bounds.extents.x)
+        //        //    && mouseWorldPosition.y > buffer.position.y - (bufferMesh.bounds.extents.y)
+        //        //    && mouseWorldPosition.y < buffer.position.y + (bufferMesh.bounds.extents.y))
+        //        //{
+        //        //    coloredWordDisplay.changeWord();
+        //        //}
+        //    }
+        //}
 
         if (playerRomain.getTimerWithMoving() > 10f)
         {
@@ -144,7 +147,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void setColor ()
+    public void setColor()
     {
         if (state == States.NORMAL)
         {
@@ -166,7 +169,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void setMaxValue ()
+    public void setMaxValue()
     {
         if (colorSlider.maxValue < 1f)
         {
@@ -186,7 +189,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void setState ()
+    public void setState()
     {
         if (stateSlider.value == 0)
         {
@@ -202,7 +205,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public States getCurrentState ()
+    public States getCurrentState()
     {
         return state;
     }

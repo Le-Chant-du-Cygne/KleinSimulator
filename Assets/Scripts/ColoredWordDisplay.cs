@@ -12,18 +12,21 @@ public class ColoredWordDisplay : MonoBehaviour {
     public float fadeInDuration = 1f;
     private float fadeInTimer = 0f;
 
-   // public GameObject wordSpriteGo;
-    public SpriteRenderer wordSprite;
-    public Color wordSpriteColor;
+    // public GameObject wordSpriteGo;
+    public Text title;
+    public Color titleColor;
 
     private Slider colorSlider;
     private Player player;
     private Toggle maxValueToggle;
 
+    private string[] words = {  "YES",
+                                "NO",
+                                "FUCK"};
+
     void Start()
     {
-        wordSprite.enabled = false;
-        //wordSpriteGo.SetActive(false);
+        title.enabled = false;
 
         colorSlider = GameObject.Find("ColorSlider").GetComponent<Slider>();
         player = GetComponent<Player>();
@@ -41,14 +44,14 @@ public class ColoredWordDisplay : MonoBehaviour {
         {
             if(maxValueToggle.isOn)
             {
-                wordSpriteColor = new HSVColor(0.65f, 1f, 1f).ToColor();
+                titleColor = new HSVColor(0.65f, 1f, 1f).ToColor();
             }
             else
             {
-                wordSpriteColor = new HSVColor(0.5f, 1f, 1f).ToColor();
+                titleColor = new HSVColor(0.5f, 1f, 1f).ToColor();
             }
 
-            wordSprite.color = wordSpriteColor;
+            title.color = titleColor;
         }
     }
 
@@ -56,10 +59,14 @@ public class ColoredWordDisplay : MonoBehaviour {
     {
         activated = true;
         fadeInTimer = 0f;
-        wordSprite.enabled = true;
-        wordSprite.color = wordSpriteColor;
-        //wordSpriteGo.SetActive(true);
-        //wordSpriteMaterial.color = wordSpriteColor;
+        title.enabled = true;
+        title.color = titleColor;
         initialized = true;
+    }
+
+    public void changeWord()
+    {
+        int i = Mathf.FloorToInt(Random.Range(0, words.Length));
+        title.text = words[i];
     }
 }
