@@ -20,9 +20,10 @@ public class ColoredWordDisplay : MonoBehaviour {
     private Player player;
     private Toggle maxValueToggle;
 
-    private string[] words = {  "YES",
-                                "NO",
-                                "FUCK"};
+    private string[] words = {  "YES", "NO", "FUCK", "MAIS", "OOH!", "BAT", "GUY", "MAN", "SOSO", "TRIC", "TRAC", "LARD", "NANA", "ANTI", "CHIP", "GARS",
+                                "VIENS", "PAS", "DANS", "SA", "MON", "CUL", "PARS", "TUE", "LA", "TARD", "AVEC", "ELLE", "LUI", "MENT", "TROP", "SENS", "SANS",
+        "VIE", "LE", "TA", "SA", "SON", "MON", "EST", "TU", "JE", "MOTO", "IL", "EUX", "PARS", "QUE", "PAPA", "BABA", "CACA", "FIFI", "CHUT", "BUT", "FIUT", "$$$",
+        "KENT", "LOLA", "LOL", "VIET"};
 
     void Start()
     {
