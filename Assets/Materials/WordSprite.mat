@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Waterizer
-  m_Shader: {fileID: 4800000, guid: 374c9a562b6e19e4b96fd3827914b316, type: 3}
+  m_Name: WordSprite
+  m_Shader: {fileID: 10755, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -40,12 +40,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _DispTex
-      second:
-        m_Texture: {fileID: 2800000, guid: 56b58a65b2a43ed4185cc14c4220d944, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
         name: _EmissionMap
       second:
         m_Texture: {fileID: 0}
@@ -64,12 +58,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _NormalMap
-      second:
-        m_Texture: {fileID: 2800000, guid: 03e1328d3f8f0a547b235bda587fc7c9, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
         name: _OcclusionMap
       second:
         m_Texture: {fileID: 0}
@@ -81,49 +69,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _StartDMap
-      second:
-        m_Texture: {fileID: 2800000, guid: 56b58a65b2a43ed4185cc14c4220d944, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _StartDMap2
-      second:
-        m_Texture: {fileID: 2800000, guid: 56b58a65b2a43ed4185cc14c4220d944, type: 3}
-        m_Scale: {x: 2, y: 2}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _StartNMap
-      second:
-        m_Texture: {fileID: 2800000, guid: 03e1328d3f8f0a547b235bda587fc7c9, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _StartNMap2
-      second:
-        m_Texture: {fileID: 2800000, guid: 64c271f68c9c3aa45a3d98b9d20a65c9, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _TargetDMap
-      second:
-        m_Texture: {fileID: 2800000, guid: 56b58a65b2a43ed4185cc14c4220d944, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _TargetNMap
-      second:
-        m_Texture: {fileID: 2800000, guid: 64c271f68c9c3aa45a3d98b9d20a65c9, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
         name: _BumpScale
       second: 1
-    - first:
-        name: _Change
-      second: 0
     - first:
         name: _Cutoff
       second: 0.5
@@ -131,29 +80,8 @@ Material:
         name: _DetailNormalMapScale
       second: 1
     - first:
-        name: _Displacement
-      second: 2
-    - first:
         name: _DstBlend
       second: 0
-    - first:
-        name: _EdgeLength
-      second: 12.2
-    - first:
-        name: _FlowScale1U
-      second: -0.66
-    - first:
-        name: _FlowScale1V
-      second: -0.27
-    - first:
-        name: _FlowScale2U
-      second: 0.4
-    - first:
-        name: _FlowScale2V
-      second: 0.35
-    - first:
-        name: _FlowSpeed
-      second: 0.08
     - first:
         name: _GlossMapScale
       second: 1
@@ -164,13 +92,7 @@ Material:
         name: _GlossyReflections
       second: 1
     - first:
-        name: _MaxSpec
-      second: 0.75
-    - first:
         name: _Metallic
-      second: 0
-    - first:
-        name: _MinSpec
       second: 0
     - first:
         name: _Mode
@@ -182,12 +104,6 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
-        name: _Phase
-      second: 0.2
-    - first:
-        name: _Phong
-      second: 0.5
-    - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
@@ -197,15 +113,6 @@ Material:
         name: _SrcBlend
       second: 1
     - first:
-        name: _StartDisp
-      second: 1.47
-    - first:
-        name: _StartDisp2
-      second: 1.37
-    - first:
-        name: _TargetDisp
-      second: 2
-    - first:
         name: _UVSec
       second: 0
     - first:
@@ -214,10 +121,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0, g: 0.13600016, b: 1, a: 1}
+      second: {r: 0, g: 0.100000255, b: 1, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
-    - first:
-        name: _SpecularColor
-      second: {r: 0.9191176, g: 0.9191176, b: 0.9191176, a: 0.5}

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:noNamespaceSchemaLocation="./corpusTextos.xsd">
+   <texto ID="2009120279" date="2009-12-02">
+      <user_id>user_111051</user_id>
+      <orig>Prend duchamp, saussices et carottes longues.</orig>
+      <transcrip>
+         <accord forme="Prends">Prend</accord>
+         <synt type_synt="ins" forme="du"/> duchamp,<synt type_synt="ins" forme="des"/> saussices et<synt type_synt="ins" forme="des"/> carottes longues.</transcrip>
+      <norm>Prends duchamp, des saussices et des carottes longues.</norm>
+   </texto>
+   <texto ID="2010032549" date="2010-03-25">
+      <user_id>user_110637</user_id>
+      <orig>Ok lui aussi il m'enerve</orig>
+      <transcrip>
+         <abrev forme="Okay">Ok</abrev>
+         <ponc forme=","/> lui aussi<ponc forme=","/> il <ortho forme="m'énerve">m'enerve</ortho>
+         <ponc forme="."/>
+      </transcrip>
+      <norm>Okay, lui aussi, il m'énerve.</norm>
+   </texto>
+   <texto ID="201004189" date="2010-04-18">
+      <user_id>user_110250</user_id>
+      <orig>Ahhaaha oops! Jvais me chercher un soulages vert!</orig>
+      <transcrip>
+         <rire>Ahhaaha</rire> 
+         <ortho forme="Oups" commentaire="Aussi majus ajout.">oops</ortho>! <synt type_synt="retab" forme="Je vais">Jvais</synt> me chercher un soulages vert!</transcrip>
+      <norm>Ahhaaha Oups! Je vais me chercher un soulages vert!</norm>
+   </texto>
+   <texto ID="2010030520" date="2010-03-05">
+      <user_id>user_112332</user_id>
+      <orig>François Morellet</orig>
+      <transcrip>
+         <prenom sexe="fem">François</prenom> 
+         <nom>Morellet</nom>
+      </transcrip>
+      <norm>François Morellet</norm>
+   </texto>
+   <texto ID="2010041810" date="2010-04-18">
+      <user_id>user_110250</user_id>
+      <orig>Jen ai trouve 2! :)</orig>
+      <transcrip>
+         <ortho forme="J'en">Jen</ortho> ai <ortho forme="trouvé">trouve</ortho> 
+         <abrev forme="deux">2</abrev>! <binet>:)</binet>
+      </transcrip>
+      <norm>J'en ai trouvé deux! :)</norm>
+   </texto>
+   <texto ID="201007135" date="2010-07-13">
+      <user_id>user_110250</user_id>
+      <orig>Oh et mon courbet revient vers minuit finalement! Mouahaha</orig>
+      <transcrip>Oh<ponc forme=","/> et mon courbet revient vers minuit<ponc forme=","/> finalement! <rire>Mouahaha</rire>
+      </transcrip>
+      <norm>Oh, et mon courbet revient vers minuit, finalement! Mouahaha</norm>
+   </texto>
+	<texto ID="200912103" date="2009-12-10">
+      <user_id>user_110488</user_id>
+      <orig>Stp amenes mon chagall</orig>
+      <transcrip>
+         <abrev forme="S'il te plaît">Stp</abrev>
+         <ponc forme=","/> 
+         <ortho forme="amène">amenes</ortho> mon chagall<ponc forme="."/>
+      </transcrip>
+      <norm>S'il te plaît, amène mon chagall.</norm>
+   </texto>
+   <texto ID="2010030983" date="2010-03-09">
+      <user_id>user_110637</user_id>
+      <orig>Apel moi</orig>
+      <transcrip>
+         <accord forme="Appelle-moi">Apel moi</accord>
+         <ponc forme="."/>
+      </transcrip>
+      <norm>Appelle-moi.</norm>
+   </texto>
+   <texto ID="2010030984" date="2010-03-09">
+      <user_id>user_110637</user_id>
+      <orig>Salut Virginie apelles moi si tes libre</orig>
+      <transcrip>Salut <prenom sexe="fem">Virginie</prenom>
+         <ponc forme=","/> 
+         <accord forme="appelle-moi" commentaire="Aussi typog.">apelles moi</accord> si <synt type_synt="retab" forme="tu es">tes</synt> libre<ponc forme="."/>
+      </transcrip>
+      <norm>Salut Virginie, appelle-moi si tu es libre.</norm>
+   </texto>
+   <texto ID="2010030986" date="2010-03-09">
+      <user_id>user_110637</user_id>
+      <orig>Vassily tes ou?</orig>
+      <transcrip>
+         <prenom sexe="fem">Vassily</prenom>
+         <ponc forme=","/> 
+         <synt type_synt="retab" forme="tu es">tes</synt> 
+         <ortho forme="où">ou</ortho>?</transcrip>
+      <norm>Vassily, tu es où?</norm>
+   </texto>
+   <texto ID="2010030987" date="2010-03-09">
+      <user_id>user_110637</user_id>
+      <orig>Jai mal aux jambes...c est exigent le contemporain</orig>
+      <transcrip>
+         <ortho forme="J'ai">Jai</ortho> mal aux jambes...<ortho forme="c'est">c est</ortho> 
+         <ortho forme="exigeant">exigent</ortho> le contemporain<ponc forme="."/>
+      </transcrip>
+      <norm>J'ai mal aux jambes... c'est exigeant le contemporain.</norm>
+   </texto>
+   <texto ID="2010052815" date="2010-05-28">
+      <user_id>user_110660</user_id>
+      <orig>Putain ya de l argent à faire ici!</orig>
+      <transcrip>
+         <bloc_lang langue="en">Putain</bloc_lang>
+         <ponc forme=","/>
+         <synt type_synt="ins" forme="il"/> 
+         <typog forme="y a">ya</typog> de <typog forme="l'argent">l argent</typog> à faire ici!</transcrip>
+      <norm>Putain, il y a de l'argent à faire ici!</norm>
+   </texto>
+   <texto ID="200912104" date="2009-12-10">
+      <user_id>user_110488</user_id>
+      <orig>Crazy caron ce soir?</orig>
+      <transcrip>
+         <bloc_lang langue="en">Crazy caron</bloc_lang> ce soir?</transcrip>
+      <norm>Crazy caron ce soir?</norm>
+   </texto>
+   <texto ID="2009121011" date="2009-12-10">
+      <user_id>user_110751</user_id>
+      <orig>J'ai checké sur internet et je suis pas mal certaine que mon rash c'est une allergie a mon chagall rayé que je portais hier</orig>
+      <transcrip>J'ai checké sur internet et je suis pas mal certaine que mon <bloc_lang langue="en">rash</bloc_lang>
+         <ponc forme=","/> c'est une allergie <ortho forme="à">a</ortho> mon chagall rayé que je portais hier<ponc forme="."/>
+      </transcrip>
+      <norm>J'ai checké sur internet et je suis pas mal certaine que mon rash, c'est une allergie à mon chagall rayé que je portais hier.</norm>
+   </texto>
+   <texto ID="2009121027" date="2009-12-10">
+      <user_id>user_111030</user_id>
+      <orig>Ok. Louis-Jacques va venir tout seul paske jfini a 9</orig>
+      <transcrip>
+         <abrev forme="Okay">Ok</abrev>. <prenom sexe="masc">Louis-Jacques</prenom> va venir tout seul <abrev forme="parce que">paske</abrev> 
+         <synt type_synt="retab" forme="je finis" commentaire="Aussi accord.">jfini</synt> 
+         <ortho forme="à">a</ortho> 
+         <abrev forme="9h">9</abrev>
+      </transcrip>
+      <norm>Okay. Louis-Jacques va venir tout seul parce que je finis à 9h</norm>
+   </texto>
+   <texto ID="2009121036" date="2009-12-10">
+      <user_id>user_111090</user_id>
+      <orig>Chéri la joconde c'est moi qui s'en occupe ce soir ok?</orig>
+      <transcrip>Chéri<ponc forme=","/> la <ortho forme="joconde">joconde</ortho>
+         <ponc forme=","/> c'est moi qui s'en occupe ce soir<ponc forme=","/> 
+         <abrev forme="okay">ok</abrev>?</transcrip>
+      <norm>Chéri, la joconde, c'est moi qui s'en occupe ce soir, okay?</norm>
+   </texto>
+</document>

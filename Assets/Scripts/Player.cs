@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Xml;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,11 +8,16 @@ public class Player : MonoBehaviour
 {
     public Transform bufferPrefab;
 
+    public enum States { NORMAL, ROTATION, SCALE }
+
+    private PlayerRomain playerRomain;
+
     private Transform klein;
     private Mesh kleinMesh;
     private Material kleinMaterial;
     private Material canvasMat;
     private Slider colorSlider;
+    private Slider stateSlider;
     private Toggle maxValueToggle;
     public Toggle MaxValueToggle
     {
@@ -20,28 +26,61 @@ public class Player : MonoBehaviour
             return maxValueToggle;
         }
     }
+    private Text sliderMoveDurationDisplay;
+    private Text text;
 
     private float saturation;
     private Transform buffer;
     private Mesh bufferMesh;
     private Material bufferMaterial;
+    private string[] texts;
+    private States state;
 
+    private ColoredWordDisplay coloredWordDisplay;
 
     void Start ()
     {
+        playerRomain = GetComponent<PlayerRomain>();
+
         klein = GameObject.Find("Klein").transform;
         kleinMesh = GameObject.Find("Klein").GetComponent<MeshFilter>().mesh;
         kleinMaterial = klein.GetComponent<MeshRenderer>().material;
         canvasMat = klein.GetComponent<MeshRenderer>().material;
         colorSlider = GameObject.Find("ColorSlider").GetComponent<Slider>();
+        stateSlider = GameObject.Find("StateSlider").GetComponent<Slider>();
         maxValueToggle = GameObject.Find("MaxValueToggle").GetComponent<Toggle>();
+        sliderMoveDurationDisplay = GameObject.Find("SliderMoveDurationDisplay").GetComponent<Text>();
+        text = GameObject.Find("Text").GetComponent<Text>();
+
+        coloredWordDisplay = GetComponent<ColoredWordDisplay>();
 
         // Init
         maxValueToggle.gameObject.SetActive(false);
+        stateSlider.gameObject.SetActive(false);
         saturation = 1f;
         buffer = null;
         bufferMesh = null;
         bufferMaterial = null;
+        text.text = "";
+        XmlDocument doc = new XmlDocument();
+        doc.PreserveWhitespace = true;
+        TextAsset xmlCorpus = Resources.Load<TextAsset>("corpusTextos");
+        doc.LoadXml(xmlCorpus.text);
+        if (doc.HasChildNodes && doc.ChildNodes.Count > 2)
+        {
+            XmlNodeList nodeList = doc.ChildNodes[2].ChildNodes;
+            texts = new string[nodeList.Count];
+            int index = 0;
+            for (int i = 0; i < nodeList.Count; i++)
+            {
+                if (nodeList[i].ChildNodes.Count > 2)
+                {
+                    texts[index] = nodeList[i].ChildNodes[3].InnerText;
+                    index++;
+                }
+            }
+        }
+        Resources.UnloadAsset(xmlCorpus);
     }
 	
 	void Update ()
@@ -56,7 +95,7 @@ public class Player : MonoBehaviour
 
                 if (buffer == null)
                 {
-                    if (colorSlider.value >= colorSlider.maxValue / 2f)
+                    if (colorSlider.value >= colorSlider.maxValue / 2f && colorSlider.value >= colorSlider.maxValue / 2f + 0.5f)
                     {
                         buffer = Instantiate(bufferPrefab, new Vector3(kleinMesh.bounds.max.x - (kleinMesh.bounds.max.x / 4f), kleinMesh.bounds.min.z + (kleinMesh.bounds.max.z / 4f), -1f), Quaternion.identity);
                         bufferMesh = buffer.GetComponent<MeshFilter>().mesh;
@@ -81,15 +120,45 @@ public class Player : MonoBehaviour
                     && mouseWorldPosition.y < buffer.position.y + (bufferMesh.bounds.extents.y))
                 {
                     bufferMaterial.color = kleinMaterial.color;
+                    coloredWordDisplay.condition = true;
                 }
             }
         }
-	}
+
+        if (playerRomain.getTimerWithMoving() > 10f)
+        {
+            stateSlider.gameObject.SetActive(true);
+        }
+
+        if (playerRomain.getTimerWithMoving() > 0)
+        {
+            text.text = texts[(int)(playerRomain.getTimerWithMoving() / 10f)];
+            if (buffer != null)
+            {
+                text.color = bufferMaterial.color;
+            }
+        }
+        else
+        {
+            text.text = "";
+        }
+    }
 
     public void setColor ()
     {
-        HSVColor hsvColor = new HSVColor(colorSlider.value, saturation, 1f);
-        canvasMat.color = hsvColor.ToColor();
+        if (state == States.NORMAL)
+        {
+            HSVColor hsvColor = new HSVColor(colorSlider.value, saturation, 1f);
+            canvasMat.color = hsvColor.ToColor();
+        }
+        else if (state == States.ROTATION)
+        {
+            klein.Rotate(Vector3.up, 20f * (colorSlider.value / colorSlider.maxValue));
+        }
+        else if (state == States.SCALE)
+        {
+            klein.localScale = new Vector3(colorSlider.value / colorSlider.maxValue, klein.localScale.y, colorSlider.value / colorSlider.maxValue);
+        }
 
         if (Mathf.Approximately(colorSlider.value, 0.5f))
         {
@@ -115,5 +184,26 @@ public class Player : MonoBehaviour
             bufferMesh = null;
             bufferMaterial = null;
         }
+    }
+
+    public void setState ()
+    {
+        if (stateSlider.value == 0)
+        {
+            state = States.NORMAL;
+        }
+        else if (stateSlider.value == 1)
+        {
+            state = States.ROTATION;
+        }
+        else if (stateSlider.value == 2)
+        {
+            state = States.SCALE;
+        }
+    }
+
+    public States getCurrentState ()
+    {
+        return state;
     }
 }

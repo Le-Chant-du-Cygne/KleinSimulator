@@ -47,7 +47,7 @@ public class PlayerRomain : MonoBehaviour
         if(maxValueToggleHasBeenOn)
             timer += Time.deltaTime;
 
-        if (timer >= timeWithoutMoving)
+        if (timer >= timeWithoutMoving && player.getCurrentState() == Player.States.NORMAL)
         {
             if (colorSlider.value < blueKlein - 0.01f)
             {
@@ -90,6 +90,11 @@ public class PlayerRomain : MonoBehaviour
             timerWithMoving = 0f;
             sliderMoveDurationDisplay.text = "";
         }
+    }
+
+    public float getTimerWithMoving ()
+    {
+        return timerWithMoving;
     }
 
 }
