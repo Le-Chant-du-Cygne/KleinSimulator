@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
     private string[] texts;
     private States state;
 
+    private ColoredWordDisplay coloredWordDisplay;
 
     void Start ()
     {
@@ -50,6 +51,8 @@ public class Player : MonoBehaviour
         maxValueToggle = GameObject.Find("MaxValueToggle").GetComponent<Toggle>();
         sliderMoveDurationDisplay = GameObject.Find("SliderMoveDurationDisplay").GetComponent<Text>();
         text = GameObject.Find("Text").GetComponent<Text>();
+
+        coloredWordDisplay = GetComponent<ColoredWordDisplay>();
 
         // Init
         maxValueToggle.gameObject.SetActive(false);
@@ -117,6 +120,7 @@ public class Player : MonoBehaviour
                     && mouseWorldPosition.y < buffer.position.y + (bufferMesh.bounds.extents.y))
                 {
                     bufferMaterial.color = kleinMaterial.color;
+                    coloredWordDisplay.condition = true;
                 }
             }
         }
