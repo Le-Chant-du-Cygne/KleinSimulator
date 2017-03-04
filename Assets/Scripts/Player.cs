@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Xml;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +7,8 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public Transform bufferPrefab;
+
+    private PlayerRomain playerRomain;
 
     private Transform klein;
     private Mesh kleinMesh;
@@ -20,21 +23,28 @@ public class Player : MonoBehaviour
             return maxValueToggle;
         }
     }
+    private Text sliderMoveDurationDisplay;
+    private Text text;
 
     private float saturation;
     private Transform buffer;
     private Mesh bufferMesh;
     private Material bufferMaterial;
+    private string[] texts;
 
 
     void Start ()
     {
+        playerRomain = GetComponent<PlayerRomain>();
+
         klein = GameObject.Find("Klein").transform;
         kleinMesh = GameObject.Find("Klein").GetComponent<MeshFilter>().mesh;
         kleinMaterial = klein.GetComponent<MeshRenderer>().material;
         canvasMat = klein.GetComponent<MeshRenderer>().material;
         colorSlider = GameObject.Find("ColorSlider").GetComponent<Slider>();
         maxValueToggle = GameObject.Find("MaxValueToggle").GetComponent<Toggle>();
+        sliderMoveDurationDisplay = GameObject.Find("SliderMoveDurationDisplay").GetComponent<Text>();
+        text = GameObject.Find("Text").GetComponent<Text>();
 
         // Init
         maxValueToggle.gameObject.SetActive(false);
@@ -42,6 +52,26 @@ public class Player : MonoBehaviour
         buffer = null;
         bufferMesh = null;
         bufferMaterial = null;
+        text.text = "";
+        XmlDocument doc = new XmlDocument();
+        doc.PreserveWhitespace = true;
+        TextAsset xmlCorpus = Resources.Load<TextAsset>("corpusTextos");
+        doc.LoadXml(xmlCorpus.text);
+        if (doc.HasChildNodes && doc.ChildNodes.Count > 2)
+        {
+            XmlNodeList nodeList = doc.ChildNodes[2].ChildNodes;
+            texts = new string[nodeList.Count];
+            int index = 0;
+            for (int i = 0; i < nodeList.Count; i++)
+            {
+                if (nodeList[i].ChildNodes.Count > 2)
+                {
+                    texts[index] = nodeList[i].ChildNodes[3].InnerText;
+                    index++;
+                }
+            }
+        }
+        Resources.UnloadAsset(xmlCorpus);
     }
 	
 	void Update ()
@@ -84,7 +114,16 @@ public class Player : MonoBehaviour
                 }
             }
         }
-	}
+
+        if (playerRomain.getTimerWithMoving() > 0)
+        {
+            text.text = texts[(int)(playerRomain.getTimerWithMoving() / 10f)];
+        }
+        else
+        {
+            text.text = "";
+        }
+    }
 
     public void setColor ()
     {

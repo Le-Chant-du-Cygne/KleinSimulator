@@ -92,4 +92,9 @@ public class PlayerRomain : MonoBehaviour
         }
     }
 
+    public float getTimerWithMoving ()
+    {
+        return timerWithMoving;
+    }
+
 }
