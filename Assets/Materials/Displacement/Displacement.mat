@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Waterizer
+  m_Name: Displacement
   m_Shader: {fileID: 4800000, guid: 374c9a562b6e19e4b96fd3827914b316, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -84,37 +84,37 @@ Material:
     - first:
         name: _StartDMap
       second:
-        m_Texture: {fileID: 2800000, guid: 56b58a65b2a43ed4185cc14c4220d944, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: e57f52706b7c31946a37da4895605090, type: 3}
+        m_Scale: {x: 0.5, y: 0.5}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _StartDMap2
       second:
-        m_Texture: {fileID: 2800000, guid: 56b58a65b2a43ed4185cc14c4220d944, type: 3}
-        m_Scale: {x: 2, y: 2}
+        m_Texture: {fileID: 2800000, guid: e57f52706b7c31946a37da4895605090, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _StartNMap
       second:
-        m_Texture: {fileID: 2800000, guid: 03e1328d3f8f0a547b235bda587fc7c9, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 23487fdba6639b64db7fa251515325cc, type: 3}
+        m_Scale: {x: 0.5, y: 0.5}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _StartNMap2
       second:
-        m_Texture: {fileID: 2800000, guid: 64c271f68c9c3aa45a3d98b9d20a65c9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 23487fdba6639b64db7fa251515325cc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _TargetDMap
       second:
-        m_Texture: {fileID: 2800000, guid: 56b58a65b2a43ed4185cc14c4220d944, type: 3}
+        m_Texture: {fileID: 2800000, guid: e57f52706b7c31946a37da4895605090, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _TargetNMap
       second:
-        m_Texture: {fileID: 2800000, guid: 64c271f68c9c3aa45a3d98b9d20a65c9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 23487fdba6639b64db7fa251515325cc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -138,7 +138,7 @@ Material:
       second: 0
     - first:
         name: _EdgeLength
-      second: 12.2
+      second: 2
     - first:
         name: _FlowScale1U
       second: -0.66
@@ -150,10 +150,10 @@ Material:
       second: 0.4
     - first:
         name: _FlowScale2V
-      second: 0.35
+      second: 1
     - first:
         name: _FlowSpeed
-      second: 0.08
+      second: 0.26
     - first:
         name: _GlossMapScale
       second: 1
@@ -183,7 +183,7 @@ Material:
       second: 0.02
     - first:
         name: _Phase
-      second: 0.2
+      second: 0.35
     - first:
         name: _Phong
       second: 0.5
@@ -198,10 +198,10 @@ Material:
       second: 1
     - first:
         name: _StartDisp
-      second: 1.47
+      second: 2
     - first:
         name: _StartDisp2
-      second: 1.37
+      second: 2
     - first:
         name: _TargetDisp
       second: 2
@@ -214,10 +214,10 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0, g: 0.13600016, b: 1, a: 1}
+      second: {r: 0.3239619, g: 0.3359031, b: 0.41176468, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _SpecularColor
-      second: {r: 0.9191176, g: 0.9191176, b: 0.9191176, a: 0.5}
+      second: {r: 0.23421279, g: 0.41911763, b: 0.25844172, a: 0.5}
