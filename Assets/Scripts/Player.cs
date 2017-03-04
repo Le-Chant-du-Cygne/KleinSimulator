@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
 {
     public Transform bufferPrefab;
 
+    public enum States { NORMAL, ROTATION, SCALE }
+
     private PlayerRomain playerRomain;
 
     private Transform klein;
@@ -15,6 +17,7 @@ public class Player : MonoBehaviour
     private Material kleinMaterial;
     private Material canvasMat;
     private Slider colorSlider;
+    private Slider stateSlider;
     private Toggle maxValueToggle;
     public Toggle MaxValueToggle
     {
@@ -31,6 +34,7 @@ public class Player : MonoBehaviour
     private Mesh bufferMesh;
     private Material bufferMaterial;
     private string[] texts;
+    private States state;
 
 
     void Start ()
@@ -42,12 +46,14 @@ public class Player : MonoBehaviour
         kleinMaterial = klein.GetComponent<MeshRenderer>().material;
         canvasMat = klein.GetComponent<MeshRenderer>().material;
         colorSlider = GameObject.Find("ColorSlider").GetComponent<Slider>();
+        stateSlider = GameObject.Find("StateSlider").GetComponent<Slider>();
         maxValueToggle = GameObject.Find("MaxValueToggle").GetComponent<Toggle>();
         sliderMoveDurationDisplay = GameObject.Find("SliderMoveDurationDisplay").GetComponent<Text>();
         text = GameObject.Find("Text").GetComponent<Text>();
 
         // Init
         maxValueToggle.gameObject.SetActive(false);
+        stateSlider.gameObject.SetActive(false);
         saturation = 1f;
         buffer = null;
         bufferMesh = null;
@@ -115,6 +121,11 @@ public class Player : MonoBehaviour
             }
         }
 
+        if (playerRomain.getTimerWithMoving() > 10f)
+        {
+            stateSlider.gameObject.SetActive(true);
+        }
+
         if (playerRomain.getTimerWithMoving() > 0)
         {
             text.text = texts[(int)(playerRomain.getTimerWithMoving() / 10f)];
@@ -131,8 +142,19 @@ public class Player : MonoBehaviour
 
     public void setColor ()
     {
-        HSVColor hsvColor = new HSVColor(colorSlider.value, saturation, 1f);
-        canvasMat.color = hsvColor.ToColor();
+        if (state == States.NORMAL)
+        {
+            HSVColor hsvColor = new HSVColor(colorSlider.value, saturation, 1f);
+            canvasMat.color = hsvColor.ToColor();
+        }
+        else if (state == States.ROTATION)
+        {
+            klein.Rotate(Vector3.up, 20f * (colorSlider.value / colorSlider.maxValue));
+        }
+        else if (state == States.SCALE)
+        {
+            klein.localScale = new Vector3(colorSlider.value / colorSlider.maxValue, klein.localScale.y, colorSlider.value / colorSlider.maxValue);
+        }
 
         if (Mathf.Approximately(colorSlider.value, 0.5f))
         {
@@ -158,5 +180,26 @@ public class Player : MonoBehaviour
             bufferMesh = null;
             bufferMaterial = null;
         }
+    }
+
+    public void setState ()
+    {
+        if (stateSlider.value == 0)
+        {
+            state = States.NORMAL;
+        }
+        else if (stateSlider.value == 1)
+        {
+            state = States.ROTATION;
+        }
+        else if (stateSlider.value == 2)
+        {
+            state = States.SCALE;
+        }
+    }
+
+    public States getCurrentState ()
+    {
+        return state;
     }
 }
