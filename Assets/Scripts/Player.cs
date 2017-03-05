@@ -40,12 +40,20 @@ public class Player : MonoBehaviour
     private Material bufferMaterial;
     private string[] texts;
     private States state;
+    public States State
+    {
+        get
+        {
+            return state;
+        }
+    }
     private int originalColoredTitleFontSize;
     private int maxColoredTitleSizeDiff;
 
     private ColoredWordDisplay coloredWordDisplay;
 
     private MeshRenderer mr;
+    public bool hasReachedRotation = false;
 
     void Start()
     {
@@ -203,6 +211,7 @@ public class Player : MonoBehaviour
         {
             klein.Rotate(Vector3.up, 20f * (colorSlider.value / colorSlider.maxValue));
             frame.Rotate(Vector3.up, 20f * (colorSlider.value / colorSlider.maxValue));
+            hasReachedRotation = true;
         }
         else if (state == States.SCALE)
         {

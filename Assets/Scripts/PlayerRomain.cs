@@ -77,7 +77,16 @@ public class PlayerRomain : MonoBehaviour
             if (colorSlider.value != colorSlider.maxValue && colorSlider.value != blueKlein)
             {
                 timerWithMoving += Time.deltaTime;
-                sliderMoveDurationDisplay.text = timerWithMoving + " sec";
+                if(player.hasReachedRotation && player.State == Player.States.NORMAL)
+                {
+                    sliderMoveDurationDisplay.text = "BINGO !!!";
+                    //Then condition
+                }
+                else
+                {
+                    sliderMoveDurationDisplay.text = timerWithMoving + " sec";
+                }
+                
             }
             else
             {
