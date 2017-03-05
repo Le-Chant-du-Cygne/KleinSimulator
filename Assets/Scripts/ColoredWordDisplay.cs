@@ -23,7 +23,7 @@ public class ColoredWordDisplay : MonoBehaviour {
     private string[] words = {  "YES", "NO", "FUCK", "MAIS", "OOH!", "BAT", "GUY", "MAN", "SOSO", "TRIC", "TRAC", "LARD", "NANA", "ANTI", "CHIP", "GARS",
                                 "VIENS", "PAS", "DANS", "SA", "MON", "CUL", "PARS", "TUE", "LA", "TARD", "AVEC", "ELLE", "LUI", "MENT", "TROP", "SENS", "SANS",
         "VIE", "LE", "TA", "SA", "SON", "MON", "EST", "TU", "JE", "MOTO", "IL", "EUX", "PARS", "QUE", "PAPA", "BABA", "CACA", "FIFI", "CHUT", "BUT", "FIUT", "$$$",
-        "KENT", "LOLA", "LOL", "VIET"};
+        "KENT", "LOLA", "LOL", "VIET", "ZEN", "ZZZ"};
 
     void Start()
     {
@@ -41,19 +41,19 @@ public class ColoredWordDisplay : MonoBehaviour {
             init();
         }
 
-        if (activated && maxValueToggle.enabled)
-        {
-            if(maxValueToggle.isOn)
-            {
-                titleColor = new HSVColor(0.65f, 1f, 1f).ToColor();
-            }
-            else
-            {
-                titleColor = new HSVColor(0.5f, 1f, 1f).ToColor();
-            }
-
-            title.color = titleColor;
-        }
+        //if (activated && maxValueToggle.enabled)
+        //{
+        //    if(maxValueToggle.isOn)
+        //    {
+        //        titleColor = new HSVColor(0.65f, 1f, 1f).ToColor();
+        //    }
+        //    else
+        //    {
+        //        titleColor = new HSVColor(0.5f, 1f, 1f).ToColor();
+        //    }
+        //
+        //    title.color = titleColor;
+        //}
     }
 
     private void init()
@@ -69,5 +69,8 @@ public class ColoredWordDisplay : MonoBehaviour {
     {
         int i = Mathf.FloorToInt(Random.Range(0, words.Length));
         title.text = words[i];
+        GameObject kleinGo = GameObject.Find("Klein");
+        titleColor = kleinGo.GetComponent<MeshRenderer>().material.color;
+        title.color = titleColor;
     }
 }
