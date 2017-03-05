@@ -9,9 +9,8 @@ public class DrawLines : MonoBehaviour {
     public Transform[] things;
     private LineRenderer lineRenderer;
     private Slider colorSlider;
-    private Slider stateSlider;
-
     private int i;
+
 
 	void Start () {
 
@@ -19,7 +18,6 @@ public class DrawLines : MonoBehaviour {
         lineRenderer = GetComponent<LineRenderer>();
 
         colorSlider = GameObject.Find("ColorSlider").GetComponent<Slider>();
-        stateSlider = GameObject.Find("StateSlider").GetComponent<Slider>();
     }
 	
 	void Update () {
