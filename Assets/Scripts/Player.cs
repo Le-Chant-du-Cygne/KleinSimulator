@@ -202,7 +202,7 @@ public class Player : MonoBehaviour
             HSVColor hsvColor = new HSVColor(colorSlider.value, saturation, 1f);
             mr.sharedMaterial.color = hsvColor.ToColor();
 
-            if (colorSlider.value > 0.25f && colorSlider.value < 0.5f && (klein.eulerAngles.x > 300 && klein.eulerAngles.x < 360))
+            if (colorSlider.value > 0.25f && colorSlider.value < 0.5f && ((klein.eulerAngles.x > 300 && klein.eulerAngles.x < 360) || (klein.eulerAngles.x > 0 && klein.eulerAngles.x < 40)))
             {
                 macron.gameObject.SetActive(true);
             }
