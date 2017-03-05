@@ -538,7 +538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db9eb33924a37f46a905f1976342e27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterDispMaterial: {fileID: 2100000, guid: c6aac68f41ef8c04b9efec8e96023435, type: 2}
+  waterDispMaterial: {fileID: 2100000, guid: 9cb59e19547583b4dbae9c571c182798, type: 2}
   condition: 0
   lightXAngle: 150
   maxLightIntensity: 1
