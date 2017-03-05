@@ -56,4 +56,10 @@ public class KleinWaterizer : MonoBehaviour {
         activated = true;
     }
 
+    public void activate()
+    {
+        condition = true;
+        GetComponent<PlayerRomain>().btnActivated = true;
+        Camera.main.orthographic = false;
+    }
 }

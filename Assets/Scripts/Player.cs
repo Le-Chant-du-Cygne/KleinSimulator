@@ -40,14 +40,26 @@ public class Player : MonoBehaviour
     private Material bufferMaterial;
     private string[] texts;
     private States state;
+    public States State
+    {
+        get
+        {
+            return state;
+        }
+    }
     private int originalColoredTitleFontSize;
     private int maxColoredTitleSizeDiff;
 
     private ColoredWordDisplay coloredWordDisplay;
 
+<<<<<<< .merge_file_a06044
     private Text lartText;
     private Text cestText;
     private Text lavieText;
+=======
+    private MeshRenderer mr;
+    public bool hasReachedRotation = false;
+>>>>>>> .merge_file_a06684
 
     void Start()
     {
@@ -56,6 +68,7 @@ public class Player : MonoBehaviour
         klein = GameObject.Find("Klein").transform;
         kleinMesh = GameObject.Find("Klein").GetComponent<MeshFilter>().mesh;
         kleinMaterial = klein.GetComponent<MeshRenderer>().material;
+        mr = klein.GetComponent<MeshRenderer>();
         frame = GameObject.Find("Frame").transform;
         frameMaterial = frame.GetComponent<MeshRenderer>().material;
         macron = GameObject.Find("Macron").transform;
@@ -150,7 +163,7 @@ public class Player : MonoBehaviour
             chicon.position += new Vector3(mouseWorldPosition.x - chicon.position.x, mouseWorldPosition.y - chicon.position.y, 0f) * Time.deltaTime;
         }
 
-        if (macron.gameObject.activeSelf && coloredTitle.gameObject.activeSelf)
+        if (macron.gameObject.activeSelf && coloredTitle.gameObject.activeSelf && playerRomain.getTimerWithMoving() > 25f)
         {
             chicon.gameObject.SetActive(true);
         }
@@ -218,9 +231,9 @@ public class Player : MonoBehaviour
         if (state == States.NORMAL)
         {
             HSVColor hsvColor = new HSVColor(colorSlider.value, saturation, 1f);
-            canvasMat.color = hsvColor.ToColor();
+            mr.sharedMaterial.color = hsvColor.ToColor();
 
-            if (colorSlider.value > 0.75f && colorSlider.value < 0.9f && (klein.eulerAngles.x > 300 && klein.eulerAngles.x < 360))
+            if (colorSlider.value > 0.25f && colorSlider.value < 0.5f && (klein.eulerAngles.x > 300 && klein.eulerAngles.x < 360))
             {
                 macron.gameObject.SetActive(true);
             }
@@ -229,6 +242,7 @@ public class Player : MonoBehaviour
         {
             klein.Rotate(Vector3.up, 20f * (colorSlider.value / colorSlider.maxValue));
             frame.Rotate(Vector3.up, 20f * (colorSlider.value / colorSlider.maxValue));
+            hasReachedRotation = true;
         }
         else if (state == States.SCALE)
         {
