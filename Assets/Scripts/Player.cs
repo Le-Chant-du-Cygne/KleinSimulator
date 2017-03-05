@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private Material kleinMaterial;
     private Transform frame;
     private Material frameMaterial;
+    private Text coloredTitle;
     private Material canvasMat;
     private Slider colorSlider;
     private Slider stateSlider;
@@ -37,6 +38,8 @@ public class Player : MonoBehaviour
     private Material bufferMaterial;
     private string[] texts;
     private States state;
+    private int originalColoredTitleFontSize;
+    private int maxColoredTitleSizeDiff;
 
     private ColoredWordDisplay coloredWordDisplay;
 
@@ -49,6 +52,7 @@ public class Player : MonoBehaviour
         kleinMaterial = klein.GetComponent<MeshRenderer>().material;
         frame = GameObject.Find("Frame").transform;
         frameMaterial = frame.GetComponent<MeshRenderer>().material;
+        coloredTitle = GameObject.Find("ColoredTitle").GetComponent<Text>();
         canvasMat = klein.GetComponent<MeshRenderer>().material;
         colorSlider = GameObject.Find("ColorSlider").GetComponent<Slider>();
         stateSlider = GameObject.Find("StateSlider").GetComponent<Slider>();
@@ -67,6 +71,8 @@ public class Player : MonoBehaviour
         buffer = null;
         bufferMesh = null;
         bufferMaterial = null;
+        originalColoredTitleFontSize = coloredTitle.fontSize;
+        maxColoredTitleSizeDiff = 5;
         text.text = "";
         XmlDocument doc = new XmlDocument();
         doc.PreserveWhitespace = true;
@@ -146,6 +152,14 @@ public class Player : MonoBehaviour
             {
                 text.color = bufferMaterial.color;
             }
+
+            coloredTitle.fontSize += (int)(100 * Time.deltaTime);
+            if (Mathf.Abs(coloredTitle.fontSize - originalColoredTitleFontSize) > maxColoredTitleSizeDiff)
+            {
+                coloredTitle.fontSize = originalColoredTitleFontSize;
+            }
+
+            maxColoredTitleSizeDiff = (int)playerRomain.getTimerWithMoving();
         }
         else
         {
