@@ -8,21 +8,27 @@ public class Ball : MonoBehaviour
 
     private Player player;
     private bool canPlay;
-    
+    private int collisionNumber;
+
 
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
         canPlay = false;
+        collisionNumber = 0;
     }
 
     void Update()
     {
-
+        if (collisionNumber > 3)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnCollisionEnter2D (Collision2D coll)
     {
+        collisionNumber++;
         if (coll.transform.CompareTag("Ball"))
         {
             if (!coll.transform.GetComponent<Ball>().canPlay && !canPlay)
