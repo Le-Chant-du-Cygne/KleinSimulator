@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,10 +21,17 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
-        if (collisionNumber > 3)
+        if (collisionNumber > 5)
         {
-            Destroy(gameObject);
+            StartCoroutine(Destruction());
         }
+    }
+
+    private IEnumerator Destruction()
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
+        yield return null;
     }
 
     void OnCollisionEnter2D (Collision2D coll)
