@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     private Transform frame;
     private Material frameMaterial;
     private Transform macron;
+    private Transform chicon;
     private Text coloredTitle;
     private Material canvasMat;
     private Slider colorSlider;
@@ -54,6 +55,7 @@ public class Player : MonoBehaviour
         frame = GameObject.Find("Frame").transform;
         frameMaterial = frame.GetComponent<MeshRenderer>().material;
         macron = GameObject.Find("Macron").transform;
+        chicon = GameObject.Find("Chicon").transform;
         coloredTitle = GameObject.Find("ColoredTitle").GetComponent<Text>();
         canvasMat = klein.GetComponent<MeshRenderer>().material;
         colorSlider = GameObject.Find("ColorSlider").GetComponent<Slider>();
@@ -68,6 +70,7 @@ public class Player : MonoBehaviour
         // Init
         frame.gameObject.SetActive(false);
         macron.gameObject.SetActive(false);
+        chicon.gameObject.SetActive(false);
         maxValueToggle.gameObject.SetActive(false);
         stateSlider.gameObject.SetActive(false);
         saturation = 1f;
@@ -126,6 +129,17 @@ public class Player : MonoBehaviour
             {
                 saturation = 0.5f;
             }
+        }
+
+        if (chicon.gameObject.activeSelf)
+        {
+            chicon.right = new Vector3(mouseWorldPosition.x - chicon.position.x, mouseWorldPosition.y - chicon.position.y, chicon.right.z).normalized;
+            chicon.position += new Vector3(mouseWorldPosition.x - chicon.position.x, mouseWorldPosition.y - chicon.position.y, 0f) * Time.deltaTime;
+        }
+
+        if (macron.gameObject.activeSelf && coloredTitle.gameObject.activeSelf)
+        {
+            chicon.gameObject.SetActive(true);
         }
 
         //if (Input.GetMouseButton(0))
