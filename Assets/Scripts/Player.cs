@@ -52,14 +52,12 @@ public class Player : MonoBehaviour
 
     private ColoredWordDisplay coloredWordDisplay;
 
-<<<<<<< .merge_file_a06044
     private Text lartText;
     private Text cestText;
     private Text lavieText;
-=======
     private MeshRenderer mr;
     public bool hasReachedRotation = false;
->>>>>>> .merge_file_a06684
+
 
     void Start()
     {
@@ -130,6 +128,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         if (mouseWorldPosition.x > kleinMesh.bounds.max.x / 2f && mouseWorldPosition.x < kleinMesh.bounds.max.x &&
             mouseWorldPosition.y > kleinMesh.bounds.max.z / 2f && mouseWorldPosition.y < kleinMesh.bounds.max.z)
         {
@@ -159,6 +158,7 @@ public class Player : MonoBehaviour
 
         if (chicon.gameObject.activeSelf)
         {
+            mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             chicon.right = new Vector3(mouseWorldPosition.x - chicon.position.x, mouseWorldPosition.y - chicon.position.y, chicon.right.z).normalized;
             chicon.position += new Vector3(mouseWorldPosition.x - chicon.position.x, mouseWorldPosition.y - chicon.position.y, 0f) * Time.deltaTime;
         }
@@ -166,22 +166,6 @@ public class Player : MonoBehaviour
         if (macron.gameObject.activeSelf && coloredTitle.gameObject.activeSelf && playerRomain.getTimerWithMoving() > 25f)
         {
             chicon.gameObject.SetActive(true);
-        }
-
-        if (chicon.gameObject.activeSelf && macron.gameObject.activeSelf)
-        {
-
-            if (chicon.position.x > macron.position.x - (macron.GetComponent<MeshFilter>().mesh.bounds.extents.x)
-            && chicon.position.x < macron.position.x + (macron.GetComponent<MeshFilter>().mesh.bounds.extents.x)
-            && chicon.position.y > macron.position.y - (macron.GetComponent<MeshFilter>().mesh.bounds.extents.y)
-            && chicon.position.y < macron.position.y + (macron.GetComponent<MeshFilter>().mesh.bounds.extents.y))
-            {
-                lartText.enabled = true;
-                cestText.enabled = true;
-                lavieText.enabled = true;
-            }
-
-
         }
 
         //if (Input.GetMouseButton(0))
@@ -317,6 +301,16 @@ public class Player : MonoBehaviour
     public void offsetFrameLeft ()
     {
         frameMaterial.mainTextureOffset += new Vector2(-0.05f, 0f);
+    }
+
+    public void lart ()
+    {
+        if (chicon.gameObject.activeSelf && macron.gameObject.activeSelf)
+        {
+            lartText.enabled = true;
+            cestText.enabled = true;
+            lavieText.enabled = true;
+        }
     }
 
     public States getCurrentState()
