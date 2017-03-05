@@ -1,5 +1,7 @@
 ﻿Shader "CustomGraph/Tesselation Cloudy Water" {
 	 Properties {
+			 _Color("Main Color", color) = (1,1,1,0)
+
        		//_Change ("Change ratio", Range(0, 1.0)) = 0.0
             _EdgeLength ("Edge length", Range(2,50)) = 15
             _MainTex ("Base (RGB)", 2D) = "white" {}
@@ -20,10 +22,10 @@
 			_FlowScale2V ("Flow Scale 2 vertical speed", Range (-1.0, 1.0)) = 0.5
             
             
-            _StartDisp ("Start Displacement", Range(0, 2.0)) = 0.3
-            _StartDisp2 ("Start Displacement 2", Range(0, 2.0)) = 0.3
-            _TargetDisp ("Target Displacement", Range(0, 2.0)) = 0.3
-            _Color ("Color", color) = (1,1,1,0)
+            _StartDisp ("Start Displacement", Range(0, 10.0)) = 0.3
+            _StartDisp2 ("Start Displacement 2", Range(0, 10.0)) = 0.3
+            _TargetDisp ("Target Displacement", Range(0, 10.0)) = 0.3
+            
             _SpecularColor ("Spec color", color) = (0.5,0.5,0.5,0.5)
             _MinSpec ("min spec", Float) = 0.3
             _MaxSpec ("max spec", Float) = 0.9
@@ -44,11 +46,13 @@
                 float2 texcoord : TEXCOORD0;
             };
 
+			float4 _Color;
+
 			sampler2D _MainTex;
 			sampler2D _StartNMap;
 			sampler2D _StartNMap2;
             sampler2D _TargetNMap;
-            fixed4 _Color;
+            
             float _EdgeLength;
             float _SpecPower; 
             float4 _SpecularColor;
@@ -78,7 +82,9 @@
 				float spec = smoothstep(_MinSpec, _MaxSpec, nh); //pow(nh, _SpecPower) * _SpecularColor;
 				
 				half4 c;
-				c.rgb = (_LightColor0.rgb * _SpecularColor.rgb * spec) ;//* (atten * 1.5); //*2); //+ (s.Albedo * _LightColor0.rgb * diff) for normal effect
+				c.rgb = lerp(s.Albedo, _LightColor0.rgb, diff);
+				c.rgb = lerp(c.rgb, _SpecularColor.rgb, spec);
+				//c.rgb += _SpecularColor.rgb * spec;//* (atten * 1.5); //*2); //+ (s.Albedo * _LightColor0.rgb * diff) for normal effect
 				c.a = s.Alpha;
 				return c; 
 			}
@@ -122,7 +128,7 @@
 
             void surf (Input IN, inout SurfaceOutput o) {
                 half4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-                o.Albedo = c.rgb;
+                o.Albedo = _Color.rgb;
                 o.Specular = 0.2;
                 o.Gloss = 1.0;
                 

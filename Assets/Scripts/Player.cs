@@ -45,6 +45,8 @@ public class Player : MonoBehaviour
 
     private ColoredWordDisplay coloredWordDisplay;
 
+    private MeshRenderer mr;
+
     void Start()
     {
         playerRomain = GetComponent<PlayerRomain>();
@@ -52,6 +54,7 @@ public class Player : MonoBehaviour
         klein = GameObject.Find("Klein").transform;
         kleinMesh = GameObject.Find("Klein").GetComponent<MeshFilter>().mesh;
         kleinMaterial = klein.GetComponent<MeshRenderer>().material;
+        mr = klein.GetComponent<MeshRenderer>();
         frame = GameObject.Find("Frame").transform;
         frameMaterial = frame.GetComponent<MeshRenderer>().material;
         macron = GameObject.Find("Macron").transform;
@@ -189,7 +192,7 @@ public class Player : MonoBehaviour
         if (state == States.NORMAL)
         {
             HSVColor hsvColor = new HSVColor(colorSlider.value, saturation, 1f);
-            canvasMat.color = hsvColor.ToColor();
+            mr.sharedMaterial.color = hsvColor.ToColor();
 
             if (colorSlider.value > 0.75f && colorSlider.value < 0.9f && (klein.eulerAngles.x > 300 && klein.eulerAngles.x < 360))
             {
