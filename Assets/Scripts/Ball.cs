@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,21 +9,34 @@ public class Ball : MonoBehaviour
 
     private Player player;
     private bool canPlay;
-    
+    private int collisionNumber;
+
 
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
         canPlay = false;
+        collisionNumber = 0;
     }
 
     void Update()
     {
+        if (collisionNumber > 5)
+        {
+            StartCoroutine(Destruction());
+        }
+    }
 
+    private IEnumerator Destruction()
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
+        yield return null;
     }
 
     void OnCollisionEnter2D (Collision2D coll)
     {
+        collisionNumber++;
         if (coll.transform.CompareTag("Ball"))
         {
             if (!coll.transform.GetComponent<Ball>().canPlay && !canPlay)

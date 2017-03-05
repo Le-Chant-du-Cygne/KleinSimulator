@@ -140,7 +140,7 @@ public class Player : MonoBehaviour
             chicon.position += new Vector3(mouseWorldPosition.x - chicon.position.x, mouseWorldPosition.y - chicon.position.y, 0f) * Time.deltaTime;
         }
 
-        if (macron.gameObject.activeSelf && coloredTitle.gameObject.activeSelf)
+        if (macron.gameObject.activeSelf && coloredTitle.gameObject.activeSelf && playerRomain.getTimerWithMoving() > 25f)
         {
             chicon.gameObject.SetActive(true);
         }
@@ -194,7 +194,7 @@ public class Player : MonoBehaviour
             HSVColor hsvColor = new HSVColor(colorSlider.value, saturation, 1f);
             mr.sharedMaterial.color = hsvColor.ToColor();
 
-            if (colorSlider.value > 0.75f && colorSlider.value < 0.9f && (klein.eulerAngles.x > 300 && klein.eulerAngles.x < 360))
+            if (colorSlider.value > 0.25f && colorSlider.value < 0.5f && (klein.eulerAngles.x > 300 && klein.eulerAngles.x < 360))
             {
                 macron.gameObject.SetActive(true);
             }
