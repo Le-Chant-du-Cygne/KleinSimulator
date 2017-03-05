@@ -27,7 +27,8 @@ public class Ball : MonoBehaviour
         {
             if (!coll.transform.GetComponent<Ball>().canPlay && !canPlay)
             {
-                Instantiate(word, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                GameObject myWord = Instantiate(word, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                myWord.transform.parent = GameObject.Find("WordsParent").transform;
                 canPlay = true;
             }
             else

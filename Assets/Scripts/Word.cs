@@ -15,12 +15,21 @@ public class Word : MonoBehaviour {
        int randomNumber = Random.Range(0, words.Length);
         GetComponent<SpriteRenderer>().sprite = words[randomNumber];
         GetComponent<AudioSource>().PlayOneShot(clips[randomNumber]);
+
+        GetComponent<SpriteRenderer>().color = new Color(0.2f, Random.Range(0f, 1f), Random.Range(0f, 1f));
+
+        Invoke("Destroy", 0.5f);
 		
 	}
 
+    private void Destroy()
+    {
+        Destroy(gameObject);
+    }
 
+    void Update () {
 
-	void Update () {
-		
+        transform.localScale += new Vector3(Time.deltaTime, Time.deltaTime, 0) * 4 ;
+
 	}
 }
