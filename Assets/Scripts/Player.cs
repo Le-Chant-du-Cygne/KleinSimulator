@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     private Transform klein;
     private Mesh kleinMesh;
     private Material kleinMaterial;
+    private Transform frame;
+    private Material frameMaterial;
     private Material canvasMat;
     private Slider colorSlider;
     private Slider stateSlider;
@@ -45,6 +47,8 @@ public class Player : MonoBehaviour
         klein = GameObject.Find("Klein").transform;
         kleinMesh = GameObject.Find("Klein").GetComponent<MeshFilter>().mesh;
         kleinMaterial = klein.GetComponent<MeshRenderer>().material;
+        frame = GameObject.Find("Frame").transform;
+        frameMaterial = frame.GetComponent<MeshRenderer>().material;
         canvasMat = klein.GetComponent<MeshRenderer>().material;
         colorSlider = GameObject.Find("ColorSlider").GetComponent<Slider>();
         stateSlider = GameObject.Find("StateSlider").GetComponent<Slider>();
@@ -56,6 +60,7 @@ public class Player : MonoBehaviour
         coloredWordDisplay = GetComponent<ColoredWordDisplay>();
 
         // Init
+        frame.gameObject.SetActive(false);
         maxValueToggle.gameObject.SetActive(false);
         stateSlider.gameObject.SetActive(false);
         saturation = 1f;
@@ -131,6 +136,7 @@ public class Player : MonoBehaviour
         if (playerRomain.getTimerWithMoving() > 10f)
         {
             stateSlider.gameObject.SetActive(true);
+            frameMaterial.mainTextureOffset = new Vector2(0f, 0f);
         }
 
         if (playerRomain.getTimerWithMoving() > 0)
@@ -157,10 +163,12 @@ public class Player : MonoBehaviour
         else if (state == States.ROTATION)
         {
             klein.Rotate(Vector3.up, 20f * (colorSlider.value / colorSlider.maxValue));
+            frame.Rotate(Vector3.up, 20f * (colorSlider.value / colorSlider.maxValue));
         }
         else if (state == States.SCALE)
         {
             klein.localScale = new Vector3(colorSlider.value / colorSlider.maxValue, klein.localScale.y, colorSlider.value / colorSlider.maxValue);
+            frame.localScale = new Vector3(colorSlider.value / colorSlider.maxValue, frame.localScale.y, colorSlider.value / colorSlider.maxValue);
         }
 
         if (Mathf.Approximately(colorSlider.value, 0.5f))
@@ -198,11 +206,38 @@ public class Player : MonoBehaviour
         else if (stateSlider.value == 1)
         {
             state = States.ROTATION;
+            frameMaterial.mainTextureOffset = new Vector2(0f, 0f);
         }
         else if (stateSlider.value == 2)
         {
             state = States.SCALE;
+            frameMaterial.mainTextureOffset = new Vector2(0f, 0f);
         }
+    }
+
+    public void showFrame ()
+    {
+        frame.gameObject.SetActive(true);
+    }
+
+    public void offsetFrameTop()
+    {
+        frameMaterial.mainTextureOffset += new Vector2(0f, -0.05f);
+    }
+
+    public void offsetFrameBottom()
+    {
+        frameMaterial.mainTextureOffset += new Vector2(0f, 0.05f);
+    }
+
+    public void offsetFrameRight ()
+    {
+        frameMaterial.mainTextureOffset += new Vector2(0.05f, 0f);
+    }
+
+    public void offsetFrameLeft ()
+    {
+        frameMaterial.mainTextureOffset += new Vector2(-0.05f, 0f);
     }
 
     public States getCurrentState()
