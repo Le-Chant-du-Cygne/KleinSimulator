@@ -177,8 +177,6 @@ public class Player : MonoBehaviour
             HSVColor hsvColor = new HSVColor(colorSlider.value, saturation, 1f);
             canvasMat.color = hsvColor.ToColor();
 
-            Debug.Log(colorSlider.value);
-            Debug.Log(klein.eulerAngles);
             if (colorSlider.value > 0.75f && colorSlider.value < 0.9f && (klein.eulerAngles.x > 300 && klein.eulerAngles.x < 360))
             {
                 macron.gameObject.SetActive(true);
