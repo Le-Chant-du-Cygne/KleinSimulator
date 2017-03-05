@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private Material kleinMaterial;
     private Transform frame;
     private Material frameMaterial;
+    private Transform macron;
     private Text coloredTitle;
     private Material canvasMat;
     private Slider colorSlider;
@@ -52,6 +53,7 @@ public class Player : MonoBehaviour
         kleinMaterial = klein.GetComponent<MeshRenderer>().material;
         frame = GameObject.Find("Frame").transform;
         frameMaterial = frame.GetComponent<MeshRenderer>().material;
+        macron = GameObject.Find("Macron").transform;
         coloredTitle = GameObject.Find("ColoredTitle").GetComponent<Text>();
         canvasMat = klein.GetComponent<MeshRenderer>().material;
         colorSlider = GameObject.Find("ColorSlider").GetComponent<Slider>();
@@ -65,6 +67,7 @@ public class Player : MonoBehaviour
 
         // Init
         frame.gameObject.SetActive(false);
+        macron.gameObject.SetActive(false);
         maxValueToggle.gameObject.SetActive(false);
         stateSlider.gameObject.SetActive(false);
         saturation = 1f;
@@ -173,6 +176,13 @@ public class Player : MonoBehaviour
         {
             HSVColor hsvColor = new HSVColor(colorSlider.value, saturation, 1f);
             canvasMat.color = hsvColor.ToColor();
+
+            Debug.Log(colorSlider.value);
+            Debug.Log(klein.eulerAngles);
+            if (colorSlider.value > 0.75f && colorSlider.value < 0.9f && (klein.eulerAngles.x > 300 && klein.eulerAngles.x < 360))
+            {
+                macron.gameObject.SetActive(true);
+            }
         }
         else if (state == States.ROTATION)
         {
