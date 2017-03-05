@@ -52,8 +52,14 @@ public class Player : MonoBehaviour
 
     private ColoredWordDisplay coloredWordDisplay;
 
+<<<<<<< .merge_file_a06044
+    private Text lartText;
+    private Text cestText;
+    private Text lavieText;
+=======
     private MeshRenderer mr;
     public bool hasReachedRotation = false;
+>>>>>>> .merge_file_a06684
 
     void Start()
     {
@@ -109,6 +115,15 @@ public class Player : MonoBehaviour
                 }
             }
         }
+        lartText = GameObject.Find("Text_art").GetComponent<Text>();
+        cestText = GameObject.Find("Text_cest").GetComponent<Text>();
+        lavieText = GameObject.Find("Text_lavie").GetComponent<Text>();
+        lartText.enabled = false;
+        cestText.enabled = false;
+        lavieText.enabled = false;
+
+
+
         Resources.UnloadAsset(xmlCorpus);
     }
 
@@ -151,6 +166,22 @@ public class Player : MonoBehaviour
         if (macron.gameObject.activeSelf && coloredTitle.gameObject.activeSelf && playerRomain.getTimerWithMoving() > 25f)
         {
             chicon.gameObject.SetActive(true);
+        }
+
+        if (chicon.gameObject.activeSelf && macron.gameObject.activeSelf)
+        {
+
+            if (chicon.position.x > macron.position.x - (macron.GetComponent<MeshFilter>().mesh.bounds.extents.x)
+            && chicon.position.x < macron.position.x + (macron.GetComponent<MeshFilter>().mesh.bounds.extents.x)
+            && chicon.position.y > macron.position.y - (macron.GetComponent<MeshFilter>().mesh.bounds.extents.y)
+            && chicon.position.y < macron.position.y + (macron.GetComponent<MeshFilter>().mesh.bounds.extents.y))
+            {
+                lartText.enabled = true;
+                cestText.enabled = true;
+                lavieText.enabled = true;
+            }
+
+
         }
 
         //if (Input.GetMouseButton(0))
@@ -202,7 +233,7 @@ public class Player : MonoBehaviour
             HSVColor hsvColor = new HSVColor(colorSlider.value, saturation, 1f);
             mr.sharedMaterial.color = hsvColor.ToColor();
 
-            if (colorSlider.value > 0.25f && colorSlider.value < 0.5f && (klein.eulerAngles.x > 300 && klein.eulerAngles.x < 360))
+            if (colorSlider.value > 0.25f && colorSlider.value < 0.5f && ((klein.eulerAngles.x > 300 && klein.eulerAngles.x < 360) || (klein.eulerAngles.x > 0 && klein.eulerAngles.x < 40)))
             {
                 macron.gameObject.SetActive(true);
             }
