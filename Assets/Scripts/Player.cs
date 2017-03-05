@@ -45,6 +45,10 @@ public class Player : MonoBehaviour
 
     private ColoredWordDisplay coloredWordDisplay;
 
+    private Text lartText;
+    private Text cestText;
+    private Text lavieText;
+
     void Start()
     {
         playerRomain = GetComponent<PlayerRomain>();
@@ -98,6 +102,15 @@ public class Player : MonoBehaviour
                 }
             }
         }
+        lartText = GameObject.Find("Text_art").GetComponent<Text>();
+        cestText = GameObject.Find("Text_cest").GetComponent<Text>();
+        lavieText = GameObject.Find("Text_lavie").GetComponent<Text>();
+        lartText.enabled = false;
+        cestText.enabled = false;
+        lavieText.enabled = false;
+
+
+
         Resources.UnloadAsset(xmlCorpus);
     }
 
@@ -140,6 +153,22 @@ public class Player : MonoBehaviour
         if (macron.gameObject.activeSelf && coloredTitle.gameObject.activeSelf)
         {
             chicon.gameObject.SetActive(true);
+        }
+
+        if (chicon.gameObject.activeSelf && macron.gameObject.activeSelf)
+        {
+
+            if (chicon.position.x > macron.position.x - (macron.GetComponent<MeshFilter>().mesh.bounds.extents.x)
+            && chicon.position.x < macron.position.x + (macron.GetComponent<MeshFilter>().mesh.bounds.extents.x)
+            && chicon.position.y > macron.position.y - (macron.GetComponent<MeshFilter>().mesh.bounds.extents.y)
+            && chicon.position.y < macron.position.y + (macron.GetComponent<MeshFilter>().mesh.bounds.extents.y))
+            {
+                lartText.enabled = true;
+                cestText.enabled = true;
+                lavieText.enabled = true;
+            }
+
+
         }
 
         //if (Input.GetMouseButton(0))
