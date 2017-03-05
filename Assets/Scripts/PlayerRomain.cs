@@ -137,7 +137,7 @@ public class PlayerRomain : MonoBehaviour
     {
         float x = Random.Range(-5f, 5f);
         float y = Random.Range(-5f, 5f);
-        btn.transform.position = new Vector3(x, y, 0);
+        btn.transform.position = new Vector3(x, y, -2f);
         buttonShowed = true;
     }
 

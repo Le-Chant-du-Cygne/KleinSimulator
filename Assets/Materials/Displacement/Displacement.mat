@@ -165,13 +165,13 @@ Material:
       second: 1
     - first:
         name: _MaxSpec
-      second: 0.78
+      second: 1
     - first:
         name: _Metallic
       second: 0
     - first:
         name: _MinSpec
-      second: 0.74
+      second: 0
     - first:
         name: _Mode
       second: 0
@@ -198,7 +198,7 @@ Material:
       second: 1
     - first:
         name: _StartDisp
-      second: 6.73
+      second: 10
     - first:
         name: _StartDisp2
       second: 4.06
@@ -214,10 +214,10 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0, g: 1, b: 0.6142855, a: 1}
+      second: {r: 0, g: 1, b: 1, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _SpecularColor
-      second: {r: 0, g: 0, b: 0, a: 0.5}
+      second: {r: 0, g: 0, b: 0, a: 1}

@@ -27,8 +27,8 @@
             _TargetDisp ("Target Displacement", Range(0, 10.0)) = 0.3
             
             _SpecularColor ("Spec color", color) = (0.5,0.5,0.5,0.5)
-            _MinSpec ("min spec", Float) = 0.3
-            _MaxSpec ("max spec", Float) = 0.9
+            _MinSpec ("min spec",  Range(0, 1)) = 0.3
+            _MaxSpec ("max spec", Range(0, 1)) = 0.9
         }
         SubShader {
             Tags { "RenderType"="Opaque" }
