@@ -29,8 +29,7 @@ public class DrawLines : MonoBehaviour {
             DrawLine();
         }
 
-        lineRenderer.startColor = new Color(colorSlider.value, Random.Range(colorSlider.value, 1f), Random.Range(0f, 1f));
-        lineRenderer.endColor = new Color(Random.Range(0f, colorSlider.value), colorSlider.value, Random.Range(0f, colorSlider.value));
+
 
     }
 
@@ -49,5 +48,12 @@ public class DrawLines : MonoBehaviour {
         }
 
 
+    }
+
+    public void SetLinesColor()
+    {
+
+        lineRenderer.startColor = new Color(colorSlider.value, Random.Range(colorSlider.value, 1f), Random.Range(0f, 1f));
+        lineRenderer.endColor = new Color(Random.Range(0f, colorSlider.value), colorSlider.value, Random.Range(0f, colorSlider.value));
     }
 }
